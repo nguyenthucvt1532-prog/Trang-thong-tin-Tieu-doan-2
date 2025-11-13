@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cổng Thông Tin Quân Sự Tiểu đoàn 2 Lữ đoàn 604</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* ==================================== */
+        /* 1. ĐỊNH DẠNG CHUNG VÀ MÀU SẮC */
+        /* ==================================== */
+        :root {
+            --color-primary: #B22222; /* Firebrick/Đỏ gạch */
+            --color-secondary: #CC0000; /* Đỏ tươi */
+            --color-background: #FFFFF0; /* Vàng nhạt */
+            --color-text: #333333;
+        }
+
+        /* === ĐÃ SỬA: KHÔI PHỤC MÀU VÀNG NHẠT === */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--color-background); /* ĐÃ SỬA: Khôi phục lại màu nền vàng nhạt */
+            color: var(--color-text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            font-size: 17px; /* Tăng cỡ chữ cơ bản */
+        }
+        
+        /* HEADER (ĐÃ SỬA THÀNH BANNER ẢNH MỚI) */
+        .header-top { 
+            background-color: var(--color-background); /* ĐÃ SỬA: Nền vàng nhạt */ 
+            line-height: 0; /* Giúp ảnh khít hơn */
+        }
+        .header-banner-img {
+            width: 100%; /* Luôn co dãn theo chiều rộng */
+            max-width: 1400px; /* Giới hạn chiều rộng tối đa (giống .header-container) */
+            height: 180px; /* ĐÃ SỬA: Tự động tính chiều cao */
+            display: block; /* Xóa khoảng trắng thừa */
+            margin: 0 auto; /* Căn giữa */
+        }
+        .header-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo-search-area { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
+        .logo { display: flex; align-items: center; font-size: 0; }
+        .logo-img { height: 60px; width: auto; margin-right: 15px; }
+        
+        /* === SỬA ĐỔI: TĂNG CHIỀU CAO LOGO BÊN PHẢI (KHUNG) === */
+        .header-right-image {
+            flex-shrink: 0; 
+            height: 60px; /* Đã sửa từ 60px -> 80px */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+       /* === SỬA ĐỔI: TĂNG CHIỀU CAO LOGO BÊN PHẢI (ẢNH) === */
+       .header-right-image img {
+            height: 60px; /* Đã sửa từ 60px -> 80px */
+            width: auto;  
+            display: block;
+        }
+
+        /* === ĐÃ SỬA: ĐỔI NỀN CHỮ CHẠY THÀNH MÀU VÀNG NHẠT === */
+        .slogan-center-text { 
+            flex-grow: 1; 
+            text-align: center; 
+            padding: 5px 10px; 
+            background-color: var(--color-background); /* ĐÃ SỬA: Khôi phục màu nền vàng nhạt */
+            border: none; 
+            margin: 0 10px; 
+            overflow: hidden; 
+            max-height: 40px; 
+            display: flex; 
+            align-items: center; 
+        }
+        .center-slogan-text { 
+            color: var(--color-primary); 
+            font-size: 1.2em; /* Tăng cỡ chữ chạy */
+            font-weight: bold; 
+            white-space: nowrap; 
+            font-family: 'Times New Roman', serif; /* Đổi font chữ chạy */
+        }
+        
+        .nav-bar { background-color: var(--color-secondary); text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .nav-bar a { display: inline-block; color: white; padding: 14px 20px; text-decoration: none; text-transform: uppercase; font-size: 0.9em; font-weight: bold; }
+        .nav-bar a:hover { background-color: #A00000; }
+        
+        /* ==================================== */
+        /* 3. MAIN CONTENT (Slider, Info Table) */
+        /* ==================================== */
+        main { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
+        
+        /* Slider CƠ BẢN */
+        .slider-container {
+            max-width: 1200px; position: relative; margin: auto; border-radius: 5px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .slide { 
+            position: relative; 
+            display: none; 
+            overflow: hidden; 
+            cursor: pointer; 
+        }
+        .slide img { width: 100%; height: 350px; object-fit: cover; }
+        .slide-text { color: white; font-size: 1.5em; padding: 8px 12px; position: absolute; bottom: 8px; width: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.5); }
+        .prev, .next { cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px; margin-top: -22px; color: white; font-weight: bold; font-size: 18px; transition: 0.6s ease; border-radius: 0 3px 3px 0; user-select: none; background-color: rgba(0, 0, 0, 0.4); z-index: 10; }
+        .next { right: 0; border-radius: 3px 0 0 3px; }
+        .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
+
+        @keyframes slide-in-from-right {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        @keyframes slide-in-from-left {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        
+        .slide-next-active {
+            animation-name: slide-in-from-right;
+            animation-duration: 0.8s;
+            display: block;
+        }
+        .slide-prev-active {
+            animation-name: slide-in-from-left;
+            animation-duration: 0.8s;
+            display: block;
+        }
+
+        /* BẢNG THÔNG TIN VÀ CÁC THÀNH PHẦN KHÁC (4 CỘT NGANG) */
+        .info-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        .info-table td { 
+            border: 1px solid #ccc; 
+            padding: 15px; 
+            /* background-color: white; <-- ĐÃ XÓA NỀN TRẮNG THEO YÊU CẦU */
+            vertical-align: top; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+            border-top: 5px solid var(--color-secondary); 
+            width: 25%;
+            transition: all 0.3s ease-in-out; 
+            cursor: pointer;
+        }
+        .info-table td:hover {
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2); 
+            border-top-color: var(--color-primary); 
+        }
+        .info-table h3 { color: var(--color-primary); margin-top: 0; font-size: 1.1em; text-transform: uppercase; }
+        .info-table ul { list-style: none; padding-left: 0; font-size: 0.9em; }
+        .info-table ul li { margin-bottom: 8px; border-bottom: 1px dotted #eee; padding-bottom: 5px; }
+        .info-table ul li:before { content: "•"; color: var(--color-secondary); font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; }
+        .innovation-module { background-color: #f7f7f7; padding: 20px; margin: 20px 0; border-left: 5px solid var(--color-primary); border-radius: 5px; }
+        .innovation-module h2 { color: var(--color-primary); margin-top: 0; }
+        .innovation-module a { display: inline-block; padding: 12px 25px; background-color: var(--color-primary); color: white; text-decoration: none; font-weight: bold; margin-top: 15px; border-radius: 4px; transition: background-color 0.3s; }
+        .footer-bottom { background-color: #333; color: white; text-align: center; padding: 20px 0; }
+        .footer-content { padding: 0 20px; }
+        .footer-content p strong { color: gold; font-size: 1.1em; display: block; margin-bottom: 5px; }
+        .footer-content p { margin: 5px 0; }
+        
+        /* MEDIA QUERY & CHATBOT */
+        @media (max-width: 768px) { .info-table, .info-table td { display: block; width: 100%; margin-bottom: 10px; } .slogan-center-text { display: none; } }
+        #chatbot-widget { position: fixed; bottom: 30px; right: 30px; z-index: 1000; }
+        .chatbot-button { background-color: var(--color-secondary); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.4); font-size: 1.5em; }
+        #chatbot-frame { position: absolute; bottom: 70px; right: 0; width: 300px; height: 400px; background-color: white; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden; }
+        .chatbot-header { background-color: var(--color-primary); color: white; padding: 10px; font-weight: bold; text-align: center; }
+        .chatbot-body { flex-grow: 1; padding: 10px; overflow-y: auto; font-size: 0.9em; }
+        .chatbot-footer { padding: 10px; border-top: 1px solid #eee; }
+        .chatbot-footer input { width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 3px; }
+        .ai-greeting-message { background-color: #f1f1f1; padding: 10px; border-radius: 10px 10px 10px 0; font-size: 0.9em; max-width: 90%; line-height: 1.4; }
+        .ai-greeting-message i.fa-robot { margin-right: 5px; color: var(--color-primary); }
+
+        /* ==================================== */
+        /* 3.5. STYLE CHO TRANG GIỚI THIỆU */
+        /* ==================================== */
+        .intro-container {
+            display: flex;
+            flex-direction: column; 
+            gap: 30px; 
+            margin-top: 25px;
+        }
+        .intro-section {
+            display: flex;
+            flex-wrap: wrap; 
+            align-items: center; 
+            gap: 20px; 
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .intro-image {
+            flex: 1; 
+            min-width: 280px; 
+        }
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            object-fit: cover;
+            max-height: 300px; 
+        }
+        .intro-text {
+            flex: 1.5; 
+            min-width: 300px;
+        }
+        .intro-text h3 {
+            margin-top: 0; 
+        }
+        .intro-section.reverse {
+            flex-direction: row-reverse; 
+        }
+        @media (max-width: 768px) {
+            .intro-section,
+            .intro-section.reverse {
+                flex-direction: column; 
+            }
+            .intro-image img {
+                max-height: 250px; 
+            }
+        }
+        
+        /* ==================================== */
+        /* 3.6. STYLE CHO TRANG VĂN BẢN (CHUNG) */
+        /* ==================================== */
+        .vb-section {
+            margin-bottom: 25px;
+        }
+        .vb-section h3 {
+            color: var(--color-secondary);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            font-size: 1.3em;
+        }
+        .vb-section h3 i {
+            margin-right: 8px;
+        }
+        .vb-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .vb-item {
+            padding: 12px 0;
+            border-bottom: 1px dotted #ccc;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .vb-item:last-child {
+            border-bottom: none;
+        }
+        .vb-item:hover {
+            background-color: #fcfcf5; 
+        }
+        .vb-link {
+            display: block;
+            text-decoration: none;
+            color: var(--color-text);
+        }
+        .vb-link strong {
+            color: var(--color-primary); 
+            font-size: 1.05em;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .vb-link .vb-desc {
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+        .vb-link .vb-date {
+            display: block;
+            font-size: 0.85em;
+            color: #777;
+            font-weight: normal;
+            margin-top: 5px;
+        }
+        .vb-link strong::before {
+            content: '\f15c'; 
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-right: 10px;
+            color: var(--color-secondary);
+        }
+        
+        /* ==================================== */
+		/* 3.7. STYLE CHO TÌM KIẾM & DANH MỤC VB (MỚI) */
+		/* ==================================== */
+		.vb-search-container {
+			position: relative; 
+			margin-bottom: 25px; 
+		}
+		.vb-search-input {
+			width: 100%;
+			padding: 12px 15px 12px 45px; 
+			font-size: 1em;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-sizing: border-box; 
+			background-color: #fff;
+		}
+		.vb-search-input:focus {
+			border-color: var(--color-primary);
+			outline: none;
+			box-shadow: 0 0 5px rgba(178, 34, 34, 0.3);
+		}
+		.vb-search-container i.fa-search {
+			position: absolute;
+			left: 15px;
+			top: 50%;
+			transform: translateY(-50%);
+			color: #999;
+			font-size: 0.9em;
+		}
+
+        /* Nút Quay Lại */
+        .vb-back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+        .vb-back-button:hover {
+            text-decoration: underline;
+        }
+        .vb-back-button i {
+            margin-right: 5px;
+        }
+
+        /* Grid Danh Mục */
+        .vb-category-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; 
+            justify-content: center; 
+            margin-top: 30px;
+        }
+        
+        /* === ĐÃ SỬA: flex-basis: 220px (để 4 ô vừa 1 hàng) === */
+        .vb-category-card {
+            flex-basis: 220px; /* SỬA ĐỔI: Giảm kích thước để 4 ô vừa 1 hàng */
+            flex-grow: 1;
+            max-width: 300px;
+            background-color: white;
+            border: 1px solid #eee;
+            padding: 30px 20px 25px 20px; 
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 150px; 
+        }
+        .vb-category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        
+        .vb-category-card .card-logo {
+            height: 70px; 
+            width: auto;
+            max-width: 70px; 
+            object-fit: contain; 
+            margin-bottom: 15px;
+        }
+        
+        .vb-category-card h3 {
+            margin: 0;
+            font-size: 1.2em;
+            color: var(--color-text);
+        }
+
+        .vb-category-card .card-icon-large {
+            font-size: 48px; 
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            height: 70px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+       /* ==================================== */
+        /* CSS CHO CÁC Ô DANH MỤC CÓ ẢNH NỀN */
+        /* ==================================== */
+        
+        /* Lớp nền chung */
+        .vb-card-image-bg {
+            background-size: cover;
+            background-position: center;
+            position: relative; /* Quan trọng: để định vị h3 bên trong */
+            justify-content: flex-end; 
+            padding-bottom: 10px;
+            overflow: hidden; /* Quan trọng: để ẩn h3 khi nó ở bên ngoài */
+        }
+        
+        /* === ĐÃ XÓA: Khối .vb-card-image-bg::before để BỎ LỚP PHỦ MÀU ĐỎ === */
+        
+        /* === THAY ĐỔI: BẮT ĐẦU SỬA ĐỔI HIỆU ỨNG TIÊU ĐỀ (h3) === */
+        
+        /* Thiết lập thẻ h3 cho hiệu ứng "chạy ra" từ góc trái-dưới */
+        .vb-card-image-bg h3 {
+            position: absolute; /* Định vị tuyệt đối so với thẻ cha (.vb-card-image-bg) */
+            bottom: 15px;      /* Cách lề dưới 15px */
+            left: 0;           /* Bắt đầu từ lề trái */
+            
+            background-color: var(--color-secondary); /* Nền đỏ */
+            color: white;                            /* Chữ trắng */
+            padding: 8px 15px;                       /* Đệm cho chữ */
+            margin: 0;                               /* Xóa margin mặc định của h3 */
+            font-size: 1.1em;                        /* Cỡ chữ */
+            
+            /* === THÊM MỚI: ĐẢM BẢO TRÊN 1 DÒNG === */
+            white-space: nowrap; 
+            
+            /* Bo tròn góc bên phải */
+            border-radius: 0 4px 4px 0;
+            
+            /* Ẩn bằng cách đẩy 100% sang trái */
+            transform: translateX(-100%);
+            
+            /* Hiệu ứng "chạy" mượt mà */
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            
+            /* Xóa các thuộc tính cũ */
+            text-shadow: none;
+            z-index: 2;
+            overflow: visible; /* Không cần 'hidden' nữa */
+            text-align: left;  /* Căn chữ trái */
+        }
+
+        /* Khi HOVER vào thẻ card (.vb-card-image-bg) */
+        .vb-card-image-bg:hover h3 {
+            /* "Chạy ra": Đưa h3 về vị trí 'left: 0' */
+            transform: translateX(0);
+        }
+
+        /* XÓA CÁC QUY TẮC CŨ (::before, :hover h3, :hover h3::before) */
+        /* Đảm bảo không còn quy tắc ::before nào cho h3 này */
+        .vb-card-image-bg h3::before {
+            display: none; /* Vô hiệu hóa hoàn toàn nếu có quy tắc nào đó còn sót */
+        }
+        
+        /* === KẾT THÚC SỬA ĐỔI === */
+
+
+      /* 3 Lớp ảnh nền cho VĂN BẢN */
+        .vb-card-tw {
+            background-image: url('Hinhnen-18-QuocHuy-TrongDong-Tuyetkypowerpoint.png'); 
+        }
+        .vb-card-bqp {
+            background-image: url('quânhuyy.jpg'); 
+        }
+        .vb-card-qk {
+            background-image: url('quânkhu2.jpg'); 
+        }
+        
+        /* === THÊM MỚI: 4 Lớp ảnh nền cho SINH HOẠT HỌC TẬP === */
+        .shht-card-chibo {
+            background-image: url('shcb3.jpg'); /* Tên file từ lần tạo trước */
+        }
+        .shht-card-qlms {
+            /* THAY THẾ TÊN ẢNH QUÂN HUY VÀO ĐÂY */
+            background-image: url('qlmss.png'); 
+        }
+        .shht-card-quansu {
+            /* THAY THẾ TÊN ẢNH QUÂN SỰ (VD: BIA BẮN) VÀO ĐÂY */
+            background-image: url('quân sự 1.jpg'); 
+        }
+        .shht-card-chinhtri {
+            /* THAY THẾ TÊN ẢNH CHÍNH TRỊ (VD: CỜ TỔ QUỐC) VÀO ĐÂY */
+            background-image: url('bác hôg 2.jpg'); 
+        }
+
+
+        /* ==================================== */
+        /* 4. STYLE CHO LIGHTBOX/MODAL */
+        /* ==================================== */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            padding-top: 60px; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.9); 
+            transition: opacity 0.5s;
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 900px;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+            border-radius: 5px;
+        }
+        @keyframes zoom {
+            from {transform: scale(0.1)} 
+            to {transform: scale(1)}
+        }
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 900px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close-modal:hover,
+        .close-modal:focus {
+            color: var(--color-primary); 
+            text-decoration: none;
+        }
+        @media only screen and (max-width: 700px){
+            .modal-content {
+                width: 100%;
+            }
+        }
+        .content-image {
+            width: 100%; 
+            max-width: 800px; 
+            height: auto;
+            display: block; 
+            margin: 15px auto; 
+            border-radius: 6px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <img src="Picture12.png" alt="Lữ đoàn 604" class="header-banner-img">
+        </div>
+
+        <div class="header-container logo-search-area">
+            <div class="logo">
+                <img src="quank6042.png" alt="Cờ Đảng và Cờ Tổ quốc" class="logo-img">
+            </div>
+            
+            <div class="slogan-center-text">
+                <marquee behavior="scroll" direction="left" scrollamount="6">
+                    <span class="center-slogan-text">
+                        ⭐ “Quân đội ta trung với Đảng, hiếu với dân, sẵn sàng chiến đấu hy sinh vì độc lập, tự do của Tổ quốc, vì chủ nghĩa xã hội. Nhiệm vụ nào cũng hoàn thành, khó khăn nào cũng vượt qua, kẻ thù nào cũng đánh thắng”. ⭐
+                    </span>
+                </marquee>
+            </div>
+            
+            <div class="header-right-image">
+                <a href="#"> 
+                    <img src="logo 604.png" alt="Logo đơn vị">
+                </a>
+            </div>
+        </div>
+
+        <nav class="nav-bar">
+            <a href="javascript:void(0)" onclick="loadDefaultContent()"><i class="fas fa-home"></i> Trang chủ</a>
+            <a href="javascript:void(0)" onclick="loadContent('gioi_thieu')"><i class="fas fa-info-circle"></i> Giới thiệu Đơn vị</a>
+            <a href="javascript:void(0)" onclick="loadContent('van_ban')"><i class="fas fa-book"></i> Văn bản - Nghị quyết</a>
+            <a href="javascript:void(0)" onclick="loadContent('shht_main')"><i class="fas fa-lightbulb"></i> Sinh hoạt - Học tập</a>
+            <a href="javascript:void(0)" onclick="loadContent('tra_cuu_noi_bo')"><i class="fas fa-server"></i> Tra cứu Nội bộ</a>
+            <a href="javascript:void(0)" onclick="loadContent('lien_he')"><i class="fas fa-phone"></i> Liên hệ</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        
+        <section class="slider-container">
+            <div class="slide">
+                <img src="đh đảng.jpg" alt="Hoạt động huấn luyện">
+                <div class="slide-text">Huấn luyện chiến đấu sẵn sàng cao</div>
+            </div>
+            <div class="slide">
+                <img src="hoạt động phụ nữ.jpg" alt="Sinh hoạt nội bộ">
+                <div class="slide-text">Phong trào học tập số thường xuyên</div>
+            </div>
+            <div class="slide">
+                <img src="đh đoàn d2.jpg" alt="Ứng dụng công nghệ">
+                <div class="slide-text">Sáng kiến cải tiến kỹ thuật tại đơn vị</div>
+            </div>
+            <div class="slide">
+                <img src="đại hội phụ nữ.jpg" alt="Lễ tuyên thệ">
+                <div class="slide-text">Thực hiện Nghị quyết 57-NQ/TW về KHCN</div>
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </section>
+
+        <section class="innovation-module">
+            <h2><i class="fas fa-rocket"></i> Đăng ký Nghiên cứu Sáng kiến, Giải pháp Phát triển</h2>
+            <p>Triển khai cho quân nhân tham gia đề xuất ý tưởng, đăng ký nghiên cứu sáng kiến cải tiến, giải pháp phát triển KHCN, ĐMST, CĐS và ứng dụng AI trong công việc.</p>
+            <p style="color: var(--color-primary); font-weight: bold;">⚠️ Hạn chót đăng ký: Trước ngày 25/10/2025.</p>
+            <a href="#"><i class="fas fa-edit"></i> Đăng ký Ý tưởng/Giải pháp (Mẫu Phụ lục)</a>
+        </section>
+
+        <table class="info-table">
+            <tr>
+                <td>
+                    <h3><i class="fas fa-graduation-cap"></i> ĐỜI SỐNG & HỌC TẬP SỐ</h3>
+                    <ul>
+                        <li>Phát động phong trào "học tập số thường xuyên, liên tục".</li>
+                        <li>Hướng dẫn sử dụng chatbot AI theo 4 nguyên tắc.</li>
+                        <li>Thông tin về văn hóa, thể thao, sức khỏe quân nhân.</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3><i class="fas fa-newspaper"></i> TIN THỜI SỰ</h3>
+                    <ul>
+                        <li>Cập nhật Nghị quyết, Chương trình hành động của Chính phủ (Nghị quyết số 71/NQ-CP).</li>
+                        <li>Tin tức quốc tế, trong nước nổi bật.</li>
+                        <li>Tóm tắt nội dung Nghị quyết số 57-NQ/TW của Bộ Chính trị.</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3><i class="fas fa-shield-alt"></i> TIN QUỐC PHÒNG</h3>
+                    <ul>
+                        <li>Các chỉ thị, kế hoạch của Quân khu và Lữ đoàn về KHCN, ĐMST, CĐS.</li>
+                        <li>Hoạt động huấn luyện, sẵn sàng chiến đấu.</li>
+                        <li>Cụ thể hóa nhiệm vụ KHCN, ĐMST, CĐS trong kế hoạch công tác hằng năm.</li>
+                    </ul>
+                </td>
+                <td>
+                    <h3><i class="fas fa-users"></i> TIN NỘI BỘ</h3>
+                    <ul>
+                        <li>Biểu dương, tôn vinh, khen thưởng tập thể, cá nhân có đóng góp xuất sắc.</li>
+                        <li>Ghi nhận và trân trọng từng sáng kiến, cải tiến kỹ thuật, dù nhỏ nhất.</li>
+                        <li>Kết quả thực hiện sáng kiến là tiêu chí đánh giá hoàn thành nhiệm vụ và thi đua.</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+        </main>
+
+    <div id="imageModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+    
+    <footer class="footer-bottom">
+        <div class="footer-content">
+            <p><strong>Đơn vị Chủ quản: TIỂU ĐOÀN 2 LỮ ĐOÀN 604</strong></p>
+            <p>Cơ quan Quản lý: Ban Chỉ đạo 528 Lữ đoàn 604</p>
+            <p>Thông tin Liên hệ: (Địa chỉ và số điện thoại đơn vị)</p>
+        </div>
+        <div class="footer-content" style="margin-top: 10px; font-size: 0.8em;">
+            Bản quyền © 2025 Tiểu đoàn 2 Lữ đoàn 604. Ghi rõ nguồn khi trích dẫn.
+        </div>
+    </footer>
+
+    <div id="chatbot-widget">
+        <div class="chatbot-button" onclick="toggleChatbot()">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div id="chatbot-frame">
+            <div class="chatbot-header">
+                AI-Assistant 604 <i class="fas fa-check-circle" style="color: #4CAF50;"></i>
+            </div>
+            <div class="chatbot-body">
+                <p class="ai-greeting-message">
+                    <i class="fas fa-robot"></i> <strong>Chào đồng chí!</strong> Tôi là AI-Assistant 604, tôi có thể giúp đồng chí tra cứu Văn bản, Quy trình nội bộ và Hỗ trợ Biên tập theo đúng quy định của Quân khu 2. 
+                    <br><em style="color: red; font-size: 0.9em;">*Lưu ý: Tuân thủ 4 nguyên tắc bảo mật khi sử dụng AI.*</em>
+                </p>
+            </div>
+            <div class="chatbot-footer">
+                <input type="text" placeholder="Gửi câu hỏi của đồng chí...">
+                <button><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // HÀM CHATBOT (Giữ nguyên)
+        function toggleChatbot() {
+            const frame = document.getElementById('chatbot-frame');
+            if (frame.style.display === 'flex') {
+                frame.style.display = 'none';
+            } else {
+                frame.style.display = 'flex';
+            }
+        }
+        document.querySelector('.chatbot-footer button').addEventListener('click', function() {
+            const input = document.querySelector('.chatbot-footer input');
+            const body = document.querySelector('.chatbot-body');
+            const userText = input.value.trim();
+            if (userText !== '') {
+                body.innerHTML += `<p style="text-align: right; background-color: #e0f7fa; padding: 5px; border-radius: 5px;">ĐC: ${userText}</p>`;
+                let response = '';
+                if (userText.toLowerCase().includes('sáng kiến') || userText.toLowerCase().includes('đăng ký')) {
+                    response = "Đồng chí vui lòng truy cập mục 'Sáng kiến - Giải pháp' trên Menu hoặc nhấn vào nút 'Đăng ký Ý tưởng/Giải pháp' để gửi hồ sơ trực tuyến.";
+                } else if (userText.toLowerCase().includes('văn bản') || userText.toLowerCase().includes('nghị quyết')) {
+                    response = "Đồng chí cần tìm thông tin về Nghị quyết nào (ví dụ: NQ 57-NQ/TW)?";
+                } else if (userText.toLowerCase().includes('chào')) {
+                    response = "Chào đồng chí! Tôi có thể hỗ trợ gì cho nhiệm vụ của đồng chí?";
+                } else {
+                    response = "Tôi đang tra cứu thông tin. Vui lòng hỏi rõ hơn hoặc tra cứu trong mục 'Tra cứu Nội bộ'.";
+                }
+                setTimeout(() => {
+                    body.innerHTML += `<p style="text-align: left; background-color: #f1f1f1; padding: 5px; border-radius: 5px;">AI: ${response}</p>`;
+                    body.scrollTop = body.scrollHeight; 
+                }, 1000);
+                input.value = '';
+            }
+        });
+
+        // ====================================
+        // HÀM SLIDER
+        // ====================================
+        let slideIndex = 0;
+        let autoSlideTimeout; 
+
+        function setSlideClass(index, direction) {
+            const slides = document.getElementsByClassName("slide");
+            if (slides.length === 0 || !slides[index]) return; 
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+                slides[i].classList.remove('slide-next-active', 'slide-prev-active');
+            }
+            if (direction === 1) {
+                slides[index].classList.add('slide-next-active');
+            } else {
+                slides[index].classList.add('slide-prev-active');
+            }
+            slides[index].style.display = "block";
+        }
+
+        function showSlides() {
+            clearTimeout(autoSlideTimeout); 
+            const slides = document.getElementsByClassName("slide");
+            if (slides.length === 0) return; 
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1; }  
+            setSlideClass(slideIndex - 1, 1); 
+            autoSlideTimeout = setTimeout(showSlides, 5000); 
+        }
+        
+        function plusSlides(n) {
+            clearTimeout(autoSlideTimeout); 
+            const slides = document.getElementsByClassName("slide");
+            if (slides.length === 0) return;
+            const direction = (n > 0) ? 1 : -1; 
+            slideIndex += n;
+            if (slideIndex > slides.length) { slideIndex = 1; }
+            if (slideIndex < 1) { slideIndex = slides.length; }
+            setSlideClass(slideIndex - 1, direction);
+            autoSlideTimeout = setTimeout(showSlides, 5000); 
+        }
+
+        // ====================================
+        // HÀM LIGHTBOX/MODAL
+        // ====================================
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("img01");
+        const captionText = document.getElementById("caption");
+        
+        function initializeSliderClicks() {
+            const slidesArray = Array.from(document.getElementsByClassName("slide")); 
+            slidesArray.forEach(slide => {
+                if (!slide.dataset.clickAdded) {
+                    slide.addEventListener('click', function() {
+                        const imgSrc = this.querySelector('img').src;
+                        const imgAlt = this.querySelector('.slide-text').textContent;
+                        
+                        modal.style.display = "block";
+                        modalImg.src = imgSrc;
+                        captionText.innerHTML = imgAlt;
+                        clearTimeout(autoSlideTimeout);
+                    });
+                    slide.dataset.clickAdded = 'true'; 
+                }
+            });
+        }
+        
+        function closeModal() {
+            modal.style.display = "none";
+            if (document.getElementById('main-content').querySelector('.slider-container')) {
+                 showSlides();
+            }
+        }
+        
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        
+        window.onload = function() {
+            if (document.querySelector('.slider-container')) {
+                showSlides(); 
+                initializeSliderClicks();
+            }
+        };
+
+        // ====================================
+        // HÀM LỌC TÌM KIẾM VB (THÊM MỚI)
+        // ====================================
+        function filterVanBan() {
+            const input = document.getElementById('vbSearchInput');
+            const filter = input.value.toLowerCase();
+            const listContainer = document.getElementById('vb-list-container');
+            
+            if (!listContainer) return; 
+            
+            const items = listContainer.getElementsByClassName('vb-item');
+            
+            for (let i = 0; i < items.length; i++) {
+                const link = items[i].getElementsByClassName('vb-link')[0];
+                if (link) {
+                    const text = link.textContent || link.innerText;
+                    if (text.toLowerCase().indexOf(filter) > -1) {
+                        items[i].style.display = ""; 
+                    } else {
+                        items[i].style.display = "none"; 
+                    }
+                }
+            }
+        }
+
+        // ====================================
+        // HÀM TẢI NỘI DUNG ĐỘNG
+        // ====================================
+        
+        const mainContentArea = document.getElementById('main-content');
+        const defaultMainContent = mainContentArea.innerHTML; 
+
+        // === SỬA ĐỔI: THÊM 2 TRANG MỚI VÀO contentMap ===
+        const contentMap = {
+        
+            'gioi_thieu': `
+                <section style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                    <h2><i class="fas fa-info-circle" style="color: var(--color-primary);"></i> Giới Thiệu Chung về Lữ đoàn 604</h2>
+                    <div class="intro-container">
+                        
+                        <div class="intro-section">
+                            <div class="intro-image">
+                                <img src="Cổng đvi.jpg" alt="Truyền thống Lữ đoàn 604">
+                            </div>
+                            <div class="intro-text">
+                                <h3 style="color: var(--color-secondary);">💡 Truyền thống Lịch sử</h3>
+                               <p><strong>Lữ đoàn 604</strong> (tiền thân là Trung đoàn 604), được thành lập ngày 09/9/1978 tại xã An Tường, huyện Yên Sơn, tỉnh Hà Tuyên (nay thuộc phường An Tường, thành phố Tuyên Quang, tỉnh Tuyên Quang). Lữ đoàn kế thừa truyền thống của bộ đội Thông tin Khu 10, Khu 14, Liên khu 10, Liên khu Việt Bắc, Quân khu Tây Bắc năm xưa và bộ đội thông tin liên lạc toàn quân.</p>
+                               <p>Truyền thống của Lữ đoàn là: “<strong>Trung thành – Chủ động – Đoàn kết – Sáng tạo – Vững chắc</strong>”. Bằng trí tuệ, công sức và xương máu, các thế hệ cán bộ, chiến sĩ đã nối tiếp nhau lập nhiều chiến công, viết nên trang sử vàng son, tô thắm truyền thống vinh quang.</p>
+                            </div>
+                        </div>
+
+                        <div class="intro-section reverse">
+                            <div class="intro-image">
+                                <img src="IMG_3632.JPG" alt="Huấn luyện nhiệm vụ">
+                            </div>
+                            <div class="intro-text">
+                                <h3 style="color: var(--color-secondary);">🎯 Nhiệm vụ Chính trị Trọngâm</h3>
+                                <p>Nhiệm vụ chính trị trung tâm của đơn vị là bảo đảm thông tin liên lạc phục vụ Đảng ủy, Bộ Tư lệnh Quân khu lãnh đạo, chỉ huy, chỉ đạo các đơn vị trong LLVT Quân khu thực hiện nhiệm vụ quân sự, quốc phòng và liên lạc chặt chẽ với cấp trên.</p>
+                                <p>Lữ đoàn tập trung huấn luyện bộ đội toàn diện các mặt công tác, trọng tâm là bảo đảm thông tin, truyền hình cơ động theo hướng <strong>“tinh nhuệ, đa năng”</strong>. Huấn luyện, bồi dưỡng cán bộ là then chốt, huấn luyện nhân viên kỹ thuật là trọng tâm.</p>
+                            </div>
+                        </div>
+
+                       <div class="intro-section">
+                            <div class="intro-image">
+                                <img src="hoạt động phụ nữ.jpg" alt="Đón nhận phần thưởng">
+                            </div>
+                            <div class="intro-text">
+                                <h3 style="color: var(--color-secondary);">📈 Kết quả Huấn luyện và Thành tích</h3>
+                                <ul style="list-style: none; padding-left: 0;">
+                                    <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> **Kết quả Huấn luyện:** 100% cán bộ đơn vị huấn luyện được theo phân cấp, có 50% đạt khá, giỏi (trong đó có 100% cán bộ tiểu đoàn, 80% cán bộ đại đội, 82% cán bộ trung đội đạt khá, giỏi). Kết quả kiểm tra thường xuyên đạt trên 83,2% khá, giỏi.</li>
+                                    <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> **Danh hiệu:** Nhiều năm Lữ đoàn được Bộ Quốc phòng tặng cờ <strong>“Đơn vị huấn luyện giỏi”</strong>.</li>
+                                    <li><i class="fas fa-check-circle" style="color: #4CAF50;"></i> **Phần thưởng Cao quý:** Đảng, Nhà nước đã trao tặng nhiều phần thưởng, bao gồm: 1 Huân chương Bảo vệ Tổ quốc hạng Nhất, 1 Huân chương Bảo vệ Tổ quốc hạng Nhì, 1 Huân chương Chiến công hạng Hai, và 2 Huân chương Chiến công hạng Ba.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="intro-section reverse" style="border-bottom: none;">
+                            <div class="intro-image">
+                                <img src="đh đoàn d2.jpg" alt="Cán bộ chiến sĩ đoàn kết">
+                            </div>
+                            <div class="intro-text">
+                                <h3 style="color: var(--color-secondary);">🔗 Yếu tố làm nên Sức mạnh</h3>
+                                <p style="text-align: justify;">Lữ đoàn 604 đóng quân phân tán tại 6/9 tỉnh thuộc địa bàn Quân khu, với nhiều lực lượng làm nhiệm vụ riêng lẻ, độc lập. Nhờ vào việc thực hiện tốt công tác giáo dục chính trị, tư tưởng, nêu cao tinh thần tự lực, tự cường, chủ động, sáng tạo, gương mẫu, cán bộ, chiến sĩ luôn trong thế chủ động, làm chủ phương tiện, khí tài thông tin. Lữ đoàn cũng đẩy mạnh công tác xây dựng Đảng vững mạnh về chính trị, tư tưởng, đạo đức, tổ chức và cán bộ, xây dựng chính quy gắn với duy trì quản lý kỷ luật, bảo đảm đơn vị an toàn tuyệt đối</p>                                
+                                <p style="color: var(--color-primary); font-weight: bold; font-size: 1.05em; text-align: justify; margin-top: 20px;">
+                                    Tiếp tục giữ vững và phát huy truyền thống là yêu cầu khách quan, là mong mỏi, tình cảm, trách nhiệm của mọi cán bộ, chiến sĩ Lữ đoàn hiện nay.
+                                </p>
+                            </div>
+                        </div>
+                    </div> 
+                </section>
+            `,
+            
+            'van_ban': `
+              <section style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                <h2><i class="fas fa-book" style="color: var(--color-primary);"></i> Hệ thống Văn bản - Nghị quyết</h2>
+                <p style="text-align: center; font-size: 1.1em; color: #555;">Vui lòng chọn một danh mục để tra cứu:</p>
+                
+                <div class="vb-category-grid">
+                  
+                  <div class="vb-category-card vb-card-image-bg vb-card-tw" onclick="loadContent('van_ban_tw')">
+                    <h3>Nghị quyết & Chỉ thị (Trung ương)</h3>
+                  </div>
+                  
+                  <div class="vb-category-card vb-card-image-bg vb-card-bqp" onclick="loadContent('van_ban_bqp')">
+                    <h3>Luật & Thông tư (Bộ Quốc phòng)</h3>
+                  </div>
+                  
+                  <div class="vb-category-card vb-card-image-bg vb-card-qk" onclick="loadContent('van_ban_qk')">
+                    <h3>Văn bản (Quân khu & Lữ đoàn)</h3>
+                  </div>
+                  
+                </div>
+              </section>
+            `,
+
+            'van_ban_tw': `
+              <section style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                <a href="javascript:void(0)" onclick="loadContent('van_ban')" class="vb-back-button"><i class="fas fa-arrow-left"></i> Quay lại Danh mục</a>
+                
+                <h2><i class="fas fa-star" style="color: var(--color-primary);"></i> Nghị quyết & Chỉ thị (Trung ương)</h2>
+                
+                <div class="vb-search-container">
+                  <i class="fas fa-search"></i>
+                  <input type="text" id="vbSearchInput" class="vb-search-input" onkeyup="filterVanBan()" placeholder="Nhập tên văn bản, số hiệu, hoặc từ khóa...">
+                </div>
+                
+                <section class="vb-section" id="vb-list-container">
+                  <ul class="vb-list">
+                    <li class="vb-item">
+                      <a href="NQ-57-TW-BCT.pdf" target="_blank" class="vb-link">
+                        <strong>Nghị quyết số 57-NQ/TW</strong>
+                        <span class="vb-desc">Về tổ chức Quân đội nhân dân Việt Nam giai đoạn 2025 - 2030 và những năm tiếp theo.</span>
+                        <span class="vb-date">Ban hành: 20/07/2024</span>
+                      </a>
+                    </li>
+                    <li class="vb-item">
+                      <a href="Chỉ thị số 05.pdf" target="_blank" class="vb-link">
+                        <strong>Chỉ thị số 05-CT/TW</strong>
+                        <span class="vb-desc">Về đẩy mạnh học tập và làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh.</span>
+                        <span class="vb-date">Ban hành: 15/05/2016</span>
+                      </a>
+                    </li>
+                  </ul>
+                </section>
+              </section>
+            `,
+
+            'van_ban_bqp': `
+              <section style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                <a href="javascript:void(0)" onclick="loadContent('van_ban')" class="vb-back-button"><i class="fas fa-arrow-left"></i> Quay lại Danh mục</a>
+                
+                <h2><i class="fas fa-shield-alt" style="color: var(--color-primary);"></i> Luật & Thông tư (Bộ Quốc phòng)</h2>
+                
+                <div class="vb-search-container">
+                  <i class="fas fa-search"></i>
+                  <input type="text" id="vbSearchInput" class="vb-search-input" onkeyup="filterVanBan()" placeholder="Nhập tên văn bản, số hiệu, hoặc từ khóa...">
+                </div>
+                
+                <section class="vb-section" id="vb-list-container">
+                  <ul class="vb-list">
+                    <li class="vb-item">
+                      <a href="luật-sĩ-quan-quân-đội-nhân-dân-việt-nam-2019.pdf" target="_blank" class="vb-link">
+                        <strong>Luật Sĩ quan Quân đội nhân dân Việt Nam</strong>
+                        <span class="vb-desc">(Hợp nhất 2019, Văn bản hợp nhất số 24/VBHN-VPQH).</span>
+                        <span class="vb-date">Ban hành: 16/12/2019</span>
+                      </a>
+                    </li>
+                     <li class="vb-item">
+                      <a href="https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Luat-Si-quan-Quan-doi-nhan-dan-Viet-Nam-sua-doi-2024-so-52-2024-QH15-630032.aspx" target="_blank" class="vb-link">
+                        <strong>Luật Sĩ quan Quân đội nhân dân Việt Nam sửa đổi số 52 52/2024/QH15</strong>
+                        <span class="vb-desc">(Luật Sĩ quan Quân đội nhân dân Việt Nam sửa đổi số 52 52/2024/QH15).</span>
+                        <span class="vb-date">Ban hành: 28/11/2024</span>
+                      </a>
+                    </li>
+                    <li class="vb-item">
+                      <a href="Luật QNCN..pdf" target="_blank" class="vb-link">
+                        <strong>Luật Quân nhân Chuyên nghiệp, công nhân và viên chức Quốc phòng</strong>
+                        <span class="vb-desc">(Luật số 98/2025/QH15).</span>
+                        <span class="vb-date">Ban hành: 01/07/2025</span>
+                      </a>
+                    </li>
+                    <li class="vb-item">
+                      <a href="TT160_2014_TT-BQP.pdf" target="_blank" class="vb-link">
+                        <strong>Thông tư số 160/2014/TT-BQP</strong>
+                        <span class="vb-desc">Quy định chi tiết và hướng dẫn thi đua, khen thưởng trong Quân đội nhân dân Việt Nam</span>
+                        <span class="vb-date">Ban hành: 09/11/2014</span>
+                      </a>
+                    </li>
+                  </ul>
+                </section>
+              </section>
+            `,
+
+            'van_ban_qk': `
+              <section style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                <a href="javascript:void(0)" onclick="loadContent('van_ban')" class="vb-back-button"><i class="fas fa-arrow-left"></i> Quay lại Danh mục</a>
+                
+                <h2><i class="fas fa-map-marked-alt" style="color: var(--color-primary);"></i> Văn bản (Quân khu & Lữ đoàn)</h2>
+                
+                <div class="vb-search-container">
+                  <i class="fas fa-search"></i>
+                  <input type="text" id="vbSearchInput" class="vb-search-input" onkeyup="filterVanBan()" placeholder="Nhập tên văn bản, số hiệu, hoặc từ khóa...">
+                </div>
+                
+                <section class="vb-section" id="vb-list-container">
+                  <ul class="vb-list">
+                    <li class="vb-item">
+                      <a href="#" target="_blank" class="vb-link">
+                        <strong>Kế hoạch số 528/KH-BCH</strong>
+                        <span class="vb-desc">Về việc triển khai Chuyển đổi số, Đổi mới sáng tạo và ứng dụng AI tại đơn vị.</span>
+                        <span class="vb-date">Ban hành: 01/10/2025</span>
+                      </a>
+                    </li>
+                  </ul>
+                </section>
+              </section>
+            `,
+            
+            'shht_main': `
+              <section style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                <h2><i class="fas fa-lightbulb" style="color: var(--color-primary);"></i> Sinh hoạt - Học tập</h2>
+                <p style="text-align: center; font-size: 1.1em; color: #555;">Vui lòng chọn một danh mục để tra cứu:</p>
+                
+                <div class="vb-category-grid">
+                  
+                  <div class="vb-category-card vb-card-image-bg shht-card-chibo" onclick="loadContent('shht_chibo')">
+                    <h3>Kết quả Sinh hoạt Chi bộ</h3>
+                  </div>
+
+                  <div class="vb-category-card vb-card-image-bg shht-card-chinhtri" onclick="loadContent('shht_chinhtri')">
+                    <h3>Bài giảng Chính trị</h3>
+                  </div>
+                  
+                  <div class="vb-category-card vb-card-image-bg shht-card-quansu" onclick="loadContent('shht_quansu')">
+                    <h3>Bài giảng Quân sự</h3>
+                  </div>
+                  
+                  <div class="vb-category-card vb-card-image-bg shht-card-qlms" onclick="window.open('https://qlms.bqp.vn', '_blank')">
+                    <h3>Cổng QLMS (Bộ Quốc phòng)</h3>
+                  </div>
+                  
+                </div>
+              </section>
+            `,
+            
+            'shht_chibo': `
+              <section style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                <a href="javascript:void(0)" onclick="loadContent('shht_main')" class="vb-back-button"><i class="fas fa-arrow-left"></i> Quay lại Danh mục</a>
+                
+                <h2><i class="fas fa-users" style="color: var(--color-primary);"></i> Kết quả Sinh hoạt Chi bộ</h2>
+                
+                <div class="vb-search-container">
+                  <i class="fas fa-search"></i>
+                  <input type="text" id="vbSearchInput" class="vb-search-input" onkeyup="filterVanBan()" placeholder="Nhập tên tài liệu, từ khóa...">
+                </div>
+                
+                <section class="vb-section" id="vb-list-container">
+                  <ul class="vb-list">
+                    <li class="vb-item">
+                      <a href="#" class="vb-link">
+                        <strong>Nghị quyết Sinh hoạt Chi bộ tháng 11/2025</strong>
+                        <span class="vb-desc">Nội dung chính: Đánh giá kết quả tháng 10, triển khai nhiệm vụ tháng 11.</span>
+                        <span class="vb-date">Ban hành: 05/11/2025</span>
+                      </a>
+                    </li>
+                    <li class="vb-item">
+                      <a href="#" class="vb-link">
+                        <strong>Chuyên đề: Nâng cao chất lượng sinh hoạt chi bộ</strong>
+                        <span class="vb-desc">Tài liệu học tập chuyên đề quý IV/2025.</span>
+                        <span class="vb-date">Ban hành: 01/10/2025</span>
+                      </a>
+                    </li>
+                    <li class="vb-item">
+                      <a href="#" class="vb-link">
+                        <strong>Nghị quyết Sinh hoạt Chi bộ tháng 10/2025</strong>
+                        <span class="vb-desc">Nội dung chính: Đánh giá kết quả tháng 9, triển khai nhiệm vụ tháng 10.</span>
+                        <span class="vb-date">Ban hành: 05/10/2025</span>
+                      </a>
+                    </li>
+                  </ul>
+                </section>
+              </section>
+            `,
+
+            'shht_quansu': `
+              <section style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                <a href="javascript:void(0)" onclick="loadContent('shht_main')" class="vb-back-button"><i class="fas fa-arrow-left"></i> Quay lại Danh mục</a>
+                
+                <h2><i class="fas fa-shield-alt" style="color: var(--color-primary);"></i> Bài giảng Quân sự</h2>
+                
+                <div class="vb-search-container">
+                  <i class="fas fa-search"></i>
+                  <input type="text" id="vbSearchInput" class="vb-search-input" onkeyup="filterVanBan()" placeholder="Nhập tên bài giảng, từ khóa...">
+                </div>
+                
+                <section class="vb-section" id="vb-list-container">
+                  <ul class="vb-list">
+                    <li class="vb-item">
+                      <a href="#" target="_blank" class="vb-link">
+                        <strong>Bài giảng: Kỹ thuật chiến đấu bộ binh (Phần 1)</strong>
+                        <span class="vb-desc">Slide bài giảng huấn luyện chiến sĩ mới.</span>
+                        <span class="vb-date">Cập nhật: 02/11/2025</span>
+                      </a>
+                    </li>
+                    <li class="vb-item">
+                      <a href="Dieu lenh QDNDVN.docx" target="_blank" class="vb-link">
+                        <strong>Bài giảng: Điều lệnh đội ngũ</strong>
+                        <span class="vb-desc">Video hướng dẫn và slide trình chiếu.</span>
+                        <span class="vb-date">Cập nhật: 01/11/2025</span>
+                      </a>
+                    </li>
+                    <li class="vb-item">
+                      <a href="#" target="_blank" class="vb-link">
+                        <strong>Tài liệu: Tính năng và cấu tạo súng tiểu liên AK</strong>
+                        <span class="vb-desc">Tài liệu tham khảo huấn luyện.</span>
+                        <span class="vb-date">Cập nhật: 20/10/2025</span>
+                      </a>
+                    </li>
+                  </ul>
+                </section>
+              </section>
+            `,
+            
+            'shht_chinhtri': `
+              <section style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                <a href="javascript:void(0)" onclick="loadContent('shht_main')" class="vb-back-button"><i class="fas fa-arrow-left"></i> Quay lại Danh mục</a>
+                
+                <h2><i class="fas fa-star" style="color: var(--color-primary);"></i> Bài giảng Chính trị</h2>
+                
+                <div class="vb-search-container">
+                  <i class="fas fa-search"></i>
+                  <input type="text" id="vbSearchInput" class="vb-search-input" onkeyup="filterVanBan()" placeholder="Nhập tên bài giảng, từ khóa...">
+                </div>
+                
+                <section class="vb-section" id="vb-list-container">
+                  <ul class="vb-list">
+                    <li class="vb-item">
+                      <a href="CHUYÊN ĐỀ A Huấn.pptx" target="_blank" class="vb-link">
+                        <strong>Bài giảng: CHUYÊN ĐỀ THÔNG TƯ SỐ 122/2924/TT-BQP NGÀY 31/12/2024 QUY ĐỊNH VỀ THỰC HIỆN DÂN CHỦ Ở CƠ SỞ TRONG QUÂN ĐỘI NHÂN DÂN VIỆT NAM </strong>
+                        <span class="vb-desc">Giáo viên: Thiếu tá Trần Đình Huấn.</span>
+                        <span class="vb-date">Cập nhật: 03/07/2025</span>
+                      </a>
+                    </li>
+                    <li class="vb-item">
+                      <a href="Bản lĩnh chính trị kỷ nguyên vươn mình.pptx" target="_blank" class="vb-link">
+                        <strong>Bài giảng: Chuyên đề
+XÂY DỰNG BẢN LĨNH CHÍNH TRỊ 
+CHO CÁN BỘ, CHIẾN SĨ LLVT QUÂN KHU TRONG KỶ NGUYÊN VƯƠN MÌNH CỦA DÂN TỘC</strong>
+                        <span class="vb-desc">Giáo viên: Trung tá Vũ Quỳnh Châu.</span>
+                        <span class="vb-date">Cập nhật: 01/08/2025</span>
+                      </a>
+                    </li>
+                    <li class="vb-item">
+                      <a href="#" target="_blank" class="vb-link">
+                        <strong>Tài liệu: Tình hình thời sự Quý IV/2025</strong>
+                        <span class="vb-desc">Thông báo chính trị nội bộ.</span>
+                        <span class="vb-date">Cập nhật: 25/10/2025</span>
+                      </a>
+                    </li>
+                  </ul>
+                </section>
+              </section>
+            `,
+
+            // === TRANG MỚI 1: TRA CỨU NỘI BỘ ===
+            'tra_cuu_noi_bo': `
+              <section style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                <h2><i class="fas fa-server" style="color: var(--color-primary);"></i> Tra cứu Cơ sở Dữ liệu Nội bộ</h2>
+                <p style="text-align: center; font-size: 1.1em; color: #555;">Chọn một hệ thống để tra cứu thông tin (Yêu cầu đăng nhập).</p>
+                
+                <div class="vb-search-container">
+                  <i class="fas fa-search"></i>
+                  <input type="text" id="vbSearchInput" class="vb-search-input" placeholder="Nhập Số hiệu, Họ tên, hoặc Mã định danh...">
+                </div>
+
+                <div class="vb-category-grid">
+                  
+                  <div class="vb-category-card" onclick="alert('Chức năng đang phát triển')">
+                    <div class="card-icon-large"><i class="fas fa-users-cog"></i></div>
+                    <h3>Tra cứu Quân số</h3>
+                  </div>
+                  
+                  <div class="vb-category-card" onclick="alert('Chức năng đang phát triển')">
+                    <div class="card-icon-large"><i class="fas fa-award"></i></div>
+                    <h3>Tra cứu Khen thưởng</h3>
+                  </div>
+                  
+                  <div class="vb-category-card" onclick="alert('Chức năng đang phát triển')">
+                    <div class="card-icon-large"><i class="fas fa-gavel"></i></div>
+                    <h3>Tra cứu Kỷ luật</h3>
+                  </div>
+                  
+                  <div class="vb-category-card" onclick="alert('Chức năng đang phát triển')">
+                    <div class="card-icon-large"><i class="fas fa-book-open"></i></div>
+                    <h3>Tra cứu Tài liệu Mật</h3>
+                  </div>
+
+                </div>
+              </section>
+            `,
+
+            // === TRANG MỚI 2: LIÊN HỆ ===
+            'lien_he': `
+              <section style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                <h2><i class="fas fa-phone" style="color: var(--color-primary);"></i> Thông tin Liên hệ</h2>
+                
+                <div class="intro-section">
+                    <div class="intro-image">
+                        <img src="ban-do-vi-tri.jpg" alt="Bản đồ vị trí đơn vị" style="max-height: 400px; object-fit: cover;">
+                    </div>
+                    <div class="intro-text">
+                        <h3 style="color: var(--color-secondary);">TIỂU ĐOÀN 2, LỮ ĐOÀN 604</h3>
+                        
+                        <ul style="list-style: none; padding-left: 0; font-size: 1.1em;">
+                            <li style="margin-bottom: 15px;">
+                                <i class="fas fa-map-marker-alt" style="color: var(--color-primary); width: 25px;"></i>
+                                <strong>Địa chỉ:</strong> (Địa chỉ của đơn vị...)
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                <i class="fas fa-phone-alt" style="color: var(--color-primary); width: 25px;"></i>
+                                <strong>Trực ban:</strong> (Số điện thoại trực ban...)
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                <i class="fas fa-envelope" style="color: var(--color-primary); width: 25px;"></i>
+                                <strong>Email:</strong> (Email nội bộ nếu có...)
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                <i class="fas fa-globe" style="color: var(--color-primary); width: 25px;"></i>
+                                <strong>Website:</strong> Cổng thông tin Tiểu đoàn 2
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+              </section>
+            `
+        }; 
+
+        // HÀM TẢI NỘI DUNG
+        function loadContent(key) {
+            clearTimeout(autoSlideTimeout);
+            
+            if (contentMap[key]) {
+                mainContentArea.innerHTML = contentMap[key];
+                mainContentArea.scrollIntoView({ behavior: 'smooth' }); 
+            } else {
+                console.error("Lỗi: Không tìm thấy nội dung cho key '", key, "' trong contentMap.");
+            }
+        }
+        
+       // HÀM KHÔI PHỤC TRANG CHỦ
+        function loadDefaultContent() {
+            clearTimeout(autoSlideTimeout);
+            mainContentArea.innerHTML = defaultMainContent;
+
+            // Khởi tạo lại slider ngay lập tức nếu có
+            if (mainContentArea.querySelector('.slider-container')) {
+                showSlides();
+                initializeSliderClicks();
+            }
+        }
+    </script>
+
+</body>
+</html>
